@@ -25,6 +25,7 @@ public class Ex01 {
 		
 		System.out.println("지니오가 남깁니다. 우리팀 사랑해요 우유빛갈 이녜팀 사랑해요 긋쳐?!~");
 		
+		System.out.println("정민 림. 어디막 놀러가 :(");
 		
 
 	}
