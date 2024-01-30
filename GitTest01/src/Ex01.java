@@ -38,6 +38,10 @@ public class Ex01 {
 		}
 		System.out.println("캐뤼함"+"스캐너는 내가함 ㅅㄱ ");
 	
+		System.out.println("미니 프로젝트를 위한 계획 수립.");
+		System.out.println("설계의 단계가 필요함.");
+		System.out.println("처음부터 디테일할 필요가 없음.");
+		System.out.println("뼈대를 만들고 함.");
 	
 	}
 
