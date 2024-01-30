@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class Ex01 {
 
@@ -27,13 +28,17 @@ public class Ex01 {
 		
 		System.out.println("정민 림. 어디막 놀러가 :(");
 		
-		// 정민이가 함 ㅋ
-		for(int i=0; i<8; i++) {
+		Scanner sc = new Scanner(System.in); 
+		System.out.println("별갯수 찍어보거라 : ");
+		int star = sc.nextInt();        // 종원이가 함 ㅋ
+		for(int i=0; i<star; i++) { // 정민이가 함 ㅋ
 			for(int j=0; j<i; j++) {
 				System.out.print("*");
 			}System.out.println();
 		}
-		System.out.println("캐뤼함");
+		System.out.println("캐뤼함"+"스캐너는 내가함 ㅅㄱ ");
+	
+	
 	}
 
 }
