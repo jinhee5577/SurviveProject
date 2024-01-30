@@ -13,7 +13,7 @@ public class Character {
 	int 검 = 0;
 	int 블 = 0;
 	int 총 = 0;
-	int 무전기 = 0;
+	int 무전기 =  0;
 	
 	
 	
