@@ -62,7 +62,7 @@ public class Ex01 {
 				System.out.println("게임 설명입니다.");
 				System.out.println("이게임은 방공호에서 살아남기입니다. 원하는 캐릭터를 골라");
 				System.out.println("다양한 특성과 아이템들을 활용하여 각종 위험에서 살아남으세요! ");
-				System.out.println("==========================================");
+				System.out.println("======================================== ==");
 			}
 
 		}
