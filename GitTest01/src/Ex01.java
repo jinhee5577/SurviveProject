@@ -21,6 +21,11 @@ public class Ex01 {
 		System.out.println("속보) 지니오 정신 놓음");
 		System.out.println("나 하기싫어 귀찮아");
 		System.out.println("임정민 mz네");
+		
+		
+		System.out.println("지니오가 남깁니다. 우리팀 사랑해요 우유빛갈 이녜팀 사랑해요 긋쳐?!~");
+		
+		
 
 	}
 
