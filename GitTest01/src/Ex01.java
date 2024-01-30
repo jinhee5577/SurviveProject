@@ -27,7 +27,13 @@ public class Ex01 {
 		
 		System.out.println("정민 림. 어디막 놀러가 :(");
 		
-
+		// 정민이가 함 ㅋ
+		for(int i=0; i<8; i++) {
+			for(int j=0; j<i; j++) {
+				System.out.print("*");
+			}System.out.println();
+		}
+		System.out.println("캐뤼함");
 	}
 
 }
