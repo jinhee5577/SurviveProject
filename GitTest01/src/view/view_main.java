@@ -2,16 +2,15 @@ package view;
 import java.util.Scanner;
 
 import controller.Controller;
-import controller.Problem;
 import model.QuestionDAO;
 import model.User_infoDTO;
 
-public class Ex01 {
+public class view_main {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		Controller cot = new Controller();
-		Problem pb = new Problem();
+		
 		
 
 		{
@@ -73,7 +72,7 @@ public class Ex01 {
 
 				} else if (choice == 3) { // 게임 캐릭터 선택 or 게임시작
 					// 문제 풀고 정답까지 비교 하는 메소드 호출 해줌.
-					cot.solution_();
+					cot.solution();
 
 				} else if (choice == 4) {// 랭킹 조회 
 					cot.showTier();
