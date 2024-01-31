@@ -66,7 +66,7 @@ public class ProblemDAO {
          rs = psmt.executeQuery(); // 여긴 sql - select문이 executeQuery()를 써야함.
          
          if(rs.next()) {
-            String problem = rs.getString("question");
+            String problem = rs.getString("QUESTION");
             int num = rs.getInt("Q_NUM");
             
             QuestionDTO qdto = new QuestionDTO(problem, num); // obj에 담아서 뱉어줄거야.

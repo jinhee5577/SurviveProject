@@ -29,19 +29,22 @@ public class Problem {
 			int choice = sc.nextInt();
 			// 문제 번호 랜덤으로 생성됨.
 			Random rd = new Random();
-			int num = rd.nextInt(20);
+			int num;
 			
 			// db에서 선택한 문제 가져오기.
 			
 			QuestionDTO Question = null; // db에서 가져온 문제를 담는 객체야.
 			switch(choice) {
 				case 1: 
+					num = rd.nextInt(20)+1;
 					Question = pdao.searchProblem("하", num); // db에서 사용자가 선택한 문제 가져온다.
 					break;
 				case 2:
+					num = rd.nextInt(20)+21;
 					Question = pdao.searchProblem("중", num); // db에서 사용자가 선택한 문제 가져온다.
 					break;
 				case 3:
+					num = rd.nextInt(20)+41;
 					Question = pdao.searchProblem("상", num); // db에서 사용자가 선택한 문제 가져온다.
 					break;
 				default:
