@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class QuestionDAO {
 	// 데이터를 접근해서 가져오자.
@@ -91,7 +92,95 @@ public class QuestionDAO {
 	}
 
 	
+	// 회원가입 정보 DB전송 메서드
+	public int join(String user_id, String user_pw, String user_name) {
+		getConn();
+		
+		
+		try {
+			
+			
+			String sql = "insert into USER_INFO_TB VALUES(?,?,?,0,0)";
+			psmt =conn.prepareStatement(sql);
+			
+			psmt.setString(1, user_id);
+			psmt.setString(2, user_pw);
+			psmt.setString(3, user_name);
+			
+			int row = psmt.executeUpdate();
+			return row;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		}
+		finally {
+			allClose();
+		}
+		
+		
+	}
 	
-
+	// 로그인 정보 메서드
+	public void loginUserInfo() {
+		getConn();
+		
+		try {
+			
+			
+			String sql = "select id from user_info_tb where id=?";
+			psmt = conn.prepareStatement(sql);
+			
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+		
+	}
+	
+	
+	// 티어 불러오기 메서드 
+	public ArrayList<TierDTO> tierMethod() {
+			getConn();
+			ArrayList<TierDTO> tdtoList = new ArrayList<TierDTO>();
+			try {
+				
+				String sql ="update user_info_tb set tier = 'Bronze' where score between 100 and 200";
+				psmt = conn.prepareStatement(sql);
+				
+				int row =psmt.executeUpdate();
+				if(row>0) {
+					String sql2 = "select nickname,tier from user_info_tb";
+					psmt = conn.prepareStatement(sql2);
+					rs = psmt.executeQuery();
+					
+					while(rs.next()) {
+						String nick=rs.getString(1);
+						String tiers=rs.getString(2);
+						
+						TierDTO tdto = new TierDTO(nick, tiers);
+						tdtoList.add(tdto);
+					}
+					return tdtoList;
+				} else {
+					return null;
+				}				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			} finally {
+				allClose();
+			}
+			
+	}
+	
+	
+	
 
 }
