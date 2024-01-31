@@ -56,38 +56,39 @@ public class QuestionDAO {
 	public QuestionDTO searchProblem(String level, int n) {
 		// 각메소드 마다 db연결 해주자.
 		getConn();
+	
+			try {
+				// sql통과 통로
+				String sql = "select * from QNA_TB where Q_LEVEL = ? AND Q_NUM = ?";
+				psmt = conn.prepareStatement(sql); // psmt 문 열었고
 
-		try {
-			// sql통과 통로
-			String sql = "select * from QNA_TB where Q_LEVEL = ? AND Q_NUM = ?";
-			psmt = conn.prepareStatement(sql); // psmt 문 열었고
+				// sql문 psmt통로 넘겨 주기전에 ?채우기 - ?가 없으면 생략.
+				psmt.setString(1, level);
+				psmt.setInt(2, n);
 
-			// sql문 psmt통로 넘겨 주기전에 ?채우기 - ?가 없으면 생략.
-			psmt.setString(1, level);
-			psmt.setInt(2, n);
+				rs = psmt.executeQuery(); // 여긴 sql - select문이 executeQuery()를 써야함.
 
-			rs = psmt.executeQuery(); // 여긴 sql - select문이 executeQuery()를 써야함.
-
-			if (rs.next()) {
-				String problem = rs.getString("QUESTION");
-				int num = rs.getInt("Q_NUM");
-				String answer = rs.getString("ANSWER");
+				if (rs.next()) {
+					String problem = rs.getString("QUESTION");
+					int num = rs.getInt("Q_NUM");
+					String answer = rs.getString("ANSWER");
+					
+					QuestionDTO qdto = new QuestionDTO(problem, num, answer); // obj에 담아서 뱉어줄거야.
+					return qdto;
+				} else {
+					return null;
+				}
 				
-				QuestionDTO qdto = new QuestionDTO(problem, num, answer); // obj에 담아서 뱉어줄거야.
-				return qdto;
-			} else {
+				
+
+			} catch (SQLException e) {
+				e.printStackTrace();
 				return null;
+			} finally {
+				// 이메소드에서 할일 끝났으니 문닫자.
+				allClose();
 			}
 			
-			
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		} finally {
-			// 이메소드에서 할일 끝났으니 문닫자.
-			allClose();
-		}
 	}
 
 	

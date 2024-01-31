@@ -6,7 +6,7 @@ import controller.Controller;
 import controller.Problem;
 import model.User_infoDTO;
 
-public class Ex01 {
+public class Main {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -32,6 +32,7 @@ public class Ex01 {
 
 			} else if (choice == 3) { // 게임 캐릭터 선택 or 게임시작
 				// 문제 풀고 정답까지 비교 하는 메소드 호출 해줌.
+				// 문제를 원하는 횟수만큼 풀고 종료되게구현함. 
 				pb.solution();
 
 			} else if (choice == 4) {// 랭킹 조회
