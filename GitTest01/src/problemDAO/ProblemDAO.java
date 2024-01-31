@@ -18,11 +18,11 @@ public class ProblemDAO {
    // Connect 메소드
    private void getConn() { // DB연결 메소드,  외부에서 접근 못하게 숨겨버리자. 
       try {
-         Class.forName("oracle.jdbc.driver.OracleDriver"); // 어떤 db를 사용할것인지.
+           Class.forName("oracle.jdbc.driver.OracleDriver"); // 어떤 db를 사용할것인지.
          
-           String user = "service";
-           String pw = "12345";
-           String url = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
+           String user = "mp_21K_bigdata22_p1_1";
+           String pw = "smhrd1";
+           String url = "jdbc:oracle:thin:@project-db-campus.smhrd.com:1523:xe";
            
            conn = DriverManager.getConnection(url, user, pw); // 이메서드를 통해서 연결이됨.
            if(conn != null) {
@@ -56,7 +56,7 @@ public class ProblemDAO {
       
       try {
           //sql통과 통로
-         String sql = "select * from ? where num = ?";
+         String sql = "select * from QNA_TB where Q_LEVEL = ? AND Q_NUM = ?";
          psmt = conn.prepareStatement(sql); // psmt 문 열었고
          
           // sql문 psmt통로 넘겨 주기전에 ?채우기 - ?가 없으면 생략.
@@ -67,7 +67,7 @@ public class ProblemDAO {
          
          if(rs.next()) {
             String problem = rs.getString("question");
-            int num = rs.getInt("num");
+            int num = rs.getInt("Q_NUM");
             
             QuestionDTO qdto = new QuestionDTO(problem, num); // obj에 담아서 뱉어줄거야.
             return qdto;
