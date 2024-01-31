@@ -25,7 +25,7 @@ public class Problem {
 
 		// 문제 푸는 메서드
 		public String solution() {
-			System.out.println("문제 나이도 선택해 주세요. [1]: easy, [2]: normal, [3]: hard ");
+			System.out.println("문제 나이도 선택해 주세요. [1]: 하, [2]: 중, [3]: 상 ");
 			int choice = sc.nextInt();
 			// 문제 번호 랜덤으로 생성됨.
 			Random rd = new Random();
@@ -36,20 +36,20 @@ public class Problem {
 			QuestionDTO Question = null; // db에서 가져온 문제를 담는 객체야.
 			switch(choice) {
 				case 1: 
-					Question = pdao.searchProblem("easy", num); // db에서 사용자가 선택한 문제 가져온다.
+					Question = pdao.searchProblem("하", num); // db에서 사용자가 선택한 문제 가져온다.
 					break;
 				case 2:
-					Question = pdao.searchProblem("normal", num); // db에서 사용자가 선택한 문제 가져온다.
+					Question = pdao.searchProblem("중", num); // db에서 사용자가 선택한 문제 가져온다.
 					break;
 				case 3:
-					Question = pdao.searchProblem("hard", num); // db에서 사용자가 선택한 문제 가져온다.
+					Question = pdao.searchProblem("상", num); // db에서 사용자가 선택한 문제 가져온다.
 					break;
 				default:
 					System.out.println("잘못 입력하셨습니다.");
 					break;
 			}
 			
-			System.out.println("문제 :" + Question.getNumber()+ "번호 : " + Question.getQuestion());
+			System.out.println("문제 " + Question.getNumber()+ "번: " + Question.getQuestion());
 			
 		
 			System.out.print("정답을 입력해 주세요.  :");
