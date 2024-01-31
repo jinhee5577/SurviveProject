@@ -1,8 +1,9 @@
+package view;
 import java.util.Scanner;
 
-import DTO.User_infoDTO;
 import controller.Controller;
-import problem.Problem;
+import controller.Problem;
+import model.User_infoDTO;
 
 public class Ex01 {
 
@@ -19,10 +20,10 @@ public class Ex01 {
 			
 
 
-			while (true) {
 				System.out.println("================넌센스 퀴즈=================  ");
 				System.out.println("[1]로그인 [2]회원가입 [3]게임 시작 [4]랭킹 조회 [5] 게임 종료");
-                   System.out.println("정민륌");
+				while (true) {
+           
 				int choice = sc.nextInt();
 				if (choice == 5) {
 					System.out.println("게임을 종료합니다.");

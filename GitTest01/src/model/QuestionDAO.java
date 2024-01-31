@@ -1,4 +1,4 @@
-package problemDAO;
+package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,9 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import questionDTO.QuestionDTO;
-
-public class ProblemDAO {
+public class QuestionDAO {
 	// 데이터를 접근해서 가져오자.
 	private Connection conn; // 이안에서만 접근 가능.
 	private PreparedStatement psmt; // 이안에서만 접근 가능.

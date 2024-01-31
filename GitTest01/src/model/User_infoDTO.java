@@ -1,4 +1,4 @@
-package DTO;
+package model;
 
 public class User_infoDTO {
   String user_id;

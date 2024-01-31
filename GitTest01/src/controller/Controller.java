@@ -2,7 +2,7 @@ package controller;
 
 import java.util.Scanner;
 
-import DTO.User_infoDTO;
+import model.User_infoDTO;
 
 public class Controller {
 	Scanner sc = new Scanner(System.in);

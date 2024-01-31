@@ -1,25 +1,20 @@
-package problem;
+package controller;
 
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
-import problemDAO.ProblemDAO;
-import questionDTO.QuestionDTO;
+
+import model.QuestionDAO;
+import model.QuestionDTO;
 
 public class Problem {
 	    Scanner sc = new Scanner(System.in);
-	    ProblemDAO pdao = new ProblemDAO();
-//		ArrayList<String> Q_height = new ArrayList<String>(10);
-//		ArrayList<String> Q_middle = new ArrayList<String>(10);
-//		ArrayList<String> Q_lowness = new ArrayList<String>(10);
+	    QuestionDAO pdao = new QuestionDAO();
+
 		String answer;
 		
 		
-		// 생성자 
-//		public Problem() {
-//			
-//			
-//		}
+// 문제 랜덤 생성 
 
 
 

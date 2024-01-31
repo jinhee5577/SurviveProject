@@ -1,4 +1,4 @@
-package questionDTO;
+package model;
 
 public class QuestionDTO {
 	String question;
