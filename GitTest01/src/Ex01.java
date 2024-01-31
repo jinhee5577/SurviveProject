@@ -73,8 +73,8 @@ public class Ex01 {
 					System.out.println("게임 룰 설명입니다.");
 					System.out.println("이게임은 방공호에서 살아남기입니다. 원하는 캐릭터를 골라");
 					System.out.println("다양한 특성과 아이템들을 활용하여 각종 위험에서 살아남으세요! ");
-					System.out.println("캐릭터의 HP가 0이 되면 게임은 종료됩니다 ");
 					System.out.println("각종 이벤트에서 다양한 아이템을 얻어 게임에서 살아남으세요 !");
+					System.out.println("캐릭터의 HP가 0이 되면 게임은 종료됩니다 ");
 					System.out.println("n일간 생존 하실 경우 방공호에서 구조 되셨습니다. 축하드립니다."); // N일간 생존해서 게임이 종료 되었을 때 
 					System.out.println("==========================================");
 				}
