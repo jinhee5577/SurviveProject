@@ -2,10 +2,12 @@ package controller;
 
 import java.util.Scanner;
 
+import model.QuestionDAO;
 import model.User_infoDTO;
 
 public class Controller {
 	Scanner sc = new Scanner(System.in);
+	QuestionDAO q_dao = new QuestionDAO();
 
 	// 회원 가입 기능 메서드
 	public void join_method() {
@@ -41,7 +43,8 @@ public class Controller {
 	
 	
 	// 로그인 기능 메서드
-	public void login() {
+    	public void login() { 	// db에서 가져온 id와 pw가 동일 할경우 로그인 시켜줌.
+				
 		// 입력받은 id,pw를 db에서 가져온 id,pw가 동일 한지 비교하여 로그인 시켜준다.
 	
 		while(true) {
@@ -52,12 +55,13 @@ public class Controller {
 			String intput_pw = sc.next();
 			
 			// 이때 db에서 id, pw 가져와야함.
-			if(input_id.equals("db_id") && intput_pw.equals("d_pw")) {	// db에서 가져온 id와 pw가 동일 할경우 로그인 시켜줌.
-				System.out.println("정상 로그인 되었습니다.");
+			User_infoDTO user_dto =	q_dao.getUserInfo(input_id); // db에서 가져온 데이터 User_infoDTO객체에 담아서 리턴해줌.
+			if(input_id.equals(user_dto.getUser_id()) && intput_pw.equals(user_dto.getUser_pw())) {
+				System.out.println("정상 로그인 되었습니다."); 
 				break;
-			} else if(!input_id.equals("db_id") && intput_pw.equals("d_pw")) {
+			} else if(!input_id.equals(user_dto.getUser_id()) && intput_pw.equals(user_dto.getUser_pw())) {
 				System.out.println("아이디가 틀렸습니다. 아이디 다시 입려해주세요.");
-			} else if(input_id.equals("db_id") && !intput_pw.equals("d_pw")) {
+			} else if(input_id.equals(user_dto.getUser_id()) && !intput_pw.equals(user_dto.getUser_pw())) {
 				System.out.println("비밀번호가 틀렸습니다. 비밀번호 다시 입려해주세요.");
 			}
 			
