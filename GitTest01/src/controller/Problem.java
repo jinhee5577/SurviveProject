@@ -62,9 +62,6 @@ public class Problem {
 			return answer;
 				
 			
-
-			
-			
 		
 		}
 

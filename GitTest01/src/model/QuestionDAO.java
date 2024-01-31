@@ -23,7 +23,7 @@ public class QuestionDAO {
 
 			conn = DriverManager.getConnection(url, user, pw); // 이메서드를 통해서 연결이됨.
 			if (conn != null) {
-				System.out.println("연결 성공");
+			//	System.out.println("연결 성공");
 			} else {
 				System.out.println("연결 실패");
 			}

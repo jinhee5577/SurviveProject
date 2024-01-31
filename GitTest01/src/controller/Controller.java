@@ -56,13 +56,17 @@ public class Controller {
 			
 			// 이때 db에서 id, pw 가져와야함.
 			User_infoDTO user_dto =	q_dao.getUserInfo(input_id); // db에서 가져온 데이터 User_infoDTO객체에 담아서 리턴해줌.
-			if(input_id.equals(user_dto.getUser_id()) && intput_pw.equals(user_dto.getUser_pw())) {
-				System.out.println("정상 로그인 되었습니다."); 
-				break;
-			} else if(!input_id.equals(user_dto.getUser_id()) && intput_pw.equals(user_dto.getUser_pw())) {
-				System.out.println("아이디가 틀렸습니다. 아이디 다시 입려해주세요.");
-			} else if(input_id.equals(user_dto.getUser_id()) && !intput_pw.equals(user_dto.getUser_pw())) {
-				System.out.println("비밀번호가 틀렸습니다. 비밀번호 다시 입려해주세요.");
+			
+			if(user_dto != null) {
+				if(input_id.equals(user_dto.getUser_id()) && intput_pw.equals(user_dto.getUser_pw())) {
+					System.out.println("정상 로그인 되었습니다."); 
+					break;
+				} else if(input_id.equals(user_dto.getUser_id()) && !intput_pw.equals(user_dto.getUser_pw())) {
+					System.out.println("비밀번호가 틀렸습니다. 비밀번호 다시 입려해주세요.");
+				}
+				
+			}else {
+				System.out.println("아이디또는 비밀번호가 틀렸습니다. 다시 입력해주세요.");
 			}
 			
 		}

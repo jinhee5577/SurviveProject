@@ -27,7 +27,6 @@ public class User_infoDTO {
 	}
 	  
 	
-	
   
 
 }
