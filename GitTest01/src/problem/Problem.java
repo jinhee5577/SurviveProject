@@ -8,7 +8,7 @@ import questionDTO.QuestionDTO;
 
 public class Problem {
 	    Scanner sc = new Scanner(System.in);
-	    ProblemDAO  pdao = new ProblemDAO();
+	    ProblemDAO pdao = new ProblemDAO();
 //		ArrayList<String> Q_height = new ArrayList<String>(10);
 //		ArrayList<String> Q_middle = new ArrayList<String>(10);
 //		ArrayList<String> Q_lowness = new ArrayList<String>(10);
@@ -58,7 +58,16 @@ public class Problem {
 			System.out.print("정답을 입력해 주세요.  :");
 			answer =  sc.next();
 			
-			// db에서 정답 가져오는 메소드 호출해서 비교 해줄꺼야.
+			// db에서 정답 과 입력한 정답을 검사해줄꺼야.
+			if(answer.equals(Question.getAnswer())) {
+				System.out.println("우아~~!!! 정답 입니다~~~!!!. 진심으로 축하드려요.");
+			} else {
+				System.out.println("에고 아쉽게도 틀렸습니다.ㅠㅠ  정답은 : " + Question.getAnswer()+ " 입니다.");
+			}
+				
+			
+
+			
 			
 			return answer;
 		}

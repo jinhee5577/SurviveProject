@@ -7,7 +7,6 @@ import problem.Problem;
 public class Ex01 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
 		Controller cot = new Controller();
 		Problem pb = new Problem();
@@ -36,10 +35,9 @@ public class Ex01 {
 					cot.join_method();
 					System.out.println("회원가입이 완료 되었습니다.");
 
-				} else if (choice == 3) { // 게임 캐릭터 선택 or 게임시작 
-				
+				} else if (choice == 3) { // 게임 캐릭터 선택 or 게임시작
+					// 문제 풀고 정답까지 비교 하는 메소드 호출 해줌.
 					pb.solution();
-			
 
 				} else if (choice == 4) {// 랭킹 조회 
 

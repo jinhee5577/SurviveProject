@@ -2,13 +2,15 @@ package questionDTO;
 
 public class QuestionDTO {
 	String question;
+	String answer;
 	int number;
 	
 	// 생성자
-	public QuestionDTO(String question, int number) {
-		super();
+	public QuestionDTO(String question, int number, String answer) {
 		this.question = question;
+		this.answer = answer;
 		this.number = number;
+		
 	}
 	
 	// getter
@@ -18,6 +20,10 @@ public class QuestionDTO {
 	
 	public int getNumber() {
 		return number;
+	}
+	
+	public String getAnswer() {
+		return answer;
 	}
 	
 	
