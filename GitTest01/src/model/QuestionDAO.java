@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class QuestionDAO {
 	// 데이터를 접근해서 가져오자.
@@ -50,42 +51,81 @@ public class QuestionDAO {
 		}
 	}
 
+	
+	
 	// 선택 문제 가져오는 기능 메서드
 	public QuestionDTO searchProblem(String level, int n) {
 		// 각메소드 마다 db연결 해주자.
 		getConn();
+	
+			try {
+				// sql통과 통로
+				String sql = "select * from QNA_TB where Q_LEVEL = ? AND Q_NUM = ?";
+				psmt = conn.prepareStatement(sql); // psmt 문 열었고
 
-		try {
-			// sql통과 통로
-			String sql = "select * from QNA_TB where Q_LEVEL = ? AND Q_NUM = ?";
-			psmt = conn.prepareStatement(sql); // psmt 문 열었고
+				// sql문 psmt통로 넘겨 주기전에 ?채우기 - ?가 없으면 생략.
+				psmt.setString(1, level);
+				psmt.setInt(2, n);
 
-			// sql문 psmt통로 넘겨 주기전에 ?채우기 - ?가 없으면 생략.
-			psmt.setString(1, level);
-			psmt.setInt(2, n);
+				rs = psmt.executeQuery(); // 여긴 sql - select문이 executeQuery()를 써야함.
 
-			rs = psmt.executeQuery(); // 여긴 sql - select문이 executeQuery()를 써야함.
+				if (rs.next()) {
+					String problem = rs.getString("QUESTION");
+					int num = rs.getInt("Q_NUM");
+					String answer = rs.getString("ANSWER");
+					
+					QuestionDTO qdto = new QuestionDTO(problem, num, answer); // obj에 담아서 뱉어줄거야.
+					return qdto;
+				} else {
+					return null;
+				}
+				
+				
 
-			if (rs.next()) {
-				String problem = rs.getString("QUESTION");
-				int num = rs.getInt("Q_NUM");
-				String answer = rs.getString("ANSWER");
-
-				QuestionDTO qdto = new QuestionDTO(problem, num, answer); // obj에 담아서 뱉어줄거야.
-				return qdto;
-			} else {
+			} catch (SQLException e) {
+				e.printStackTrace();
 				return null;
+			} finally {
+				// 이메소드에서 할일 끝났으니 문닫자.
+				allClose();
 			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		} finally {
-			// 이메소드에서 할일 끝났으니 문닫자.
-			allClose();
-		}
+			
 	}
 
+	
+	// 회원가입 정보 DB전송 메서드
+	public int join(String user_id, String user_pw, String user_name) {
+		getConn();
+		
+		try {
+			
+			
+			String sql = "insert into USER_INFO_TB VALUES(?,?,?,0,0,0)";
+			psmt =conn.prepareStatement(sql);
+			
+			psmt.setString(1, user_id);
+			psmt.setString(2, user_pw);
+			psmt.setString(3, user_name);
+			
+			int row = psmt.executeUpdate();
+			return row;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		}
+		finally {
+			allClose();
+		}
+		
+		
+	}
+	
+	
+	
+	
+	// 로그인 정보 메서드
 	// db에서 유저 정보 가져오는 기능 메서드
 	public User_infoDTO getUserInfo(String input_id) {
 		// 각메소드 마다 db연결 해주자.
@@ -121,5 +161,47 @@ public class QuestionDAO {
 		}
 
 	}
+
+
+	
+	
+	// 티어 불러오기 메서드 
+	public ArrayList<TierDTO> tierMethod() {
+			getConn();
+			ArrayList<TierDTO> tdtoList = new ArrayList<TierDTO>();
+			try {
+				
+				String sql ="update user_info_tb set tier = 'Bronze' where score between 100 and 200";
+				psmt = conn.prepareStatement(sql);
+				
+				int row =psmt.executeUpdate();
+				if(row>0) {
+					String sql2 = "select nickname,tier from user_info_tb";
+					psmt = conn.prepareStatement(sql2);
+					rs = psmt.executeQuery();
+					
+					while(rs.next()) {
+						String nick=rs.getString(1);
+						String tiers=rs.getString(2);
+						
+						TierDTO tdto = new TierDTO(nick, tiers);
+						tdtoList.add(tdto);
+					}
+					return tdtoList;
+				} else {
+					return null;
+				}				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			} finally {
+				allClose();
+			}
+			
+	}
+	
+	
+	
 
 }
