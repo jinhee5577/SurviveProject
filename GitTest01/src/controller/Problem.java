@@ -24,7 +24,7 @@ public class Problem {
 		int plus1 = 0;
 		int plus2 = 0;
 		int cnt = 0;
-		while (cnt < 5) { 
+		while (cnt < 5) {
 			// 문제 번호 랜덤으로 생성됨.
 			Random rd = new Random();
 			int num;
@@ -34,10 +34,10 @@ public class Problem {
 			QuestionDTO Question = null; // db에서 가져온 문제를 담는 객체야.
 			switch (choice) {
 			case 1:
-				num = rd.nextInt(20) + 1;			
+				num = rd.nextInt(20) + 1;
 				Question = pdao.searchProblem("하", num); // db에서 사용자가 선택한 문제,정답, 점수등 이 담긴 객체를 가져온다.
-				cnt++;
-			
+				cnt++;// 문제 횟수를 세어줌 
+
 				break;
 			case 2:
 				num = rd.nextInt(20) + 21;
@@ -60,24 +60,23 @@ public class Problem {
 			answer = sc.next();
 
 			// db에서 정답 과 입력한 정답을 검사해줄꺼야.
-			if (answer.equals(Question.getAnswer())) {			
+			if (answer.equals(Question.getAnswer())) {
 				System.out.println("정답입니다.");
-				plus += 2;
-				plus1 += 3;
-				plus2 += 4;
+				plus += 2;// 하 난이도가 정답일때마다 plus에 2점을 담아준다 
+				plus1 += 3;// 중 3
+				plus2 += 4; // 상 4
 			} else {
 				System.out.println("오답입니다.  정답은 : " + Question.getAnswer() + " 입니다.");
 			}
-             
-			
+
 		}
-	if(choice == 1	) {
-		System.out.println("내점수는 : " + plus +"점 입니다.");
-	}else if(choice == 2) {
-		System.out.println("내점수는 : " + plus1 +"점 입니다.");
-	}else if(choice == 3) {
-		System.out.println("내점수는  " + plus2 +"점 입니다.");
-	}
+		if (choice == 1) {
+			System.out.println("내점수는 : " + plus + "점 입니다.");
+		} else if (choice == 2) {
+			System.out.println("내점수는 : " + plus1 + "점 입니다.");
+		} else if (choice == 3) {
+			System.out.println("내점수는  " + plus2 + "점 입니다.");
+		}
 
 	}
 
