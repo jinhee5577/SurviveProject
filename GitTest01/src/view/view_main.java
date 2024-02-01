@@ -17,6 +17,7 @@ public class view_main {
 		{
 			System.out.println("================넌센스 퀴즈=================  ");
 			
+			
 			while (true) {
 				System.out.println("[1]로그인 [2]회원가입 [5] 게임 종료");
 
@@ -35,8 +36,9 @@ public class view_main {
 							// 문제 풀고 정답까지 비교 하는 메소드 호출 해줌.
 							cot.solution();
 
-						} else if (controller == 4) {// 랭킹 조회
+						} else if (controller == 4) { // 랭킹 조회
 							cot.showTier();
+							
 						} else if (controller == 5) {// 랭킹 조회
 							System.out.println("게임을 완전히 종료 합니다.");
 							return;
@@ -44,7 +46,6 @@ public class view_main {
 					}
 
 				} else if (choice == 2) { // 회원가입
-
 					// 회원 가입 기능 메서드를 호출해줫어.
 
 					System.out.print("ID 입력: ");
@@ -66,6 +67,8 @@ public class view_main {
 					}
 
 
+				} else {
+					System.out.println("잘못 눌렀습니다.");
 				}
 
 			}

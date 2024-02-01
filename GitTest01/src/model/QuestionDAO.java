@@ -114,7 +114,6 @@ public class QuestionDAO {
 
 	}
 
-
 	// 로그인 정보 메서드
 	// db에서 유저 정보 가져오는 기능 메서드
 	public User_infoDTO getUserInfo(String input_id) {
@@ -135,8 +134,9 @@ public class QuestionDAO {
 				String id = rs.getString("id");
 				String pw = rs.getString("pw");
 				String nickname = rs.getString("nickname");
+				int score = rs.getInt("score");
 
-				User_infoDTO user_dto = new User_infoDTO(id, pw, nickname); // obj에 담아서 뱉어줄거야.
+				User_infoDTO user_dto = new User_infoDTO(id, pw, nickname, score); // obj에 담아서 뱉어줄거야.
 				return user_dto;
 			} else {
 				return null;
@@ -151,10 +151,6 @@ public class QuestionDAO {
 		}
 
 	}
-
-
-	
-	
 
 	// 현재 유저의 score점수 가져 오는 메소드.
 	public ScoreDTO getScore(String user_id) {
@@ -178,8 +174,9 @@ public class QuestionDAO {
 				ScoreDTO score_dto = new ScoreDTO(score, tier); // obj에 담아서 뱉어줄거야.
 				return score_dto;
 
-				
-			} else { return null; }
+			} else {
+				return null;
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -190,38 +187,25 @@ public class QuestionDAO {
 		}
 
 	}
-	
-
-	
 
 	// 티어 불러오기 메서드
 	public ArrayList<TierDTO> tierMethod() {
 		getConn();
 		ArrayList<TierDTO> tdtoList = new ArrayList<TierDTO>();
 		try {
+			String sql2 = "select nickname,tier from user_info_tb";
+			psmt = conn.prepareStatement(sql2);
+			rs = psmt.executeQuery();
 
-			String sql = "update user_info_tb set tier = 'Bronze' where score between 0 and 30";
-			psmt = conn.prepareStatement(sql);
+			while (rs.next()) {
+				String nick = rs.getString(1);
+				String tiers = rs.getString(2);
 
-			int row = psmt.executeUpdate();
-			if (row > 0) {
-				String sql2 = "select nickname,tier from user_info_tb";
-				psmt = conn.prepareStatement(sql2);
-				rs = psmt.executeQuery();
-
-				while (rs.next()) {
-					String nick = rs.getString(1);
-					String tiers = rs.getString(2);
-
-					TierDTO tdto = new TierDTO(nick, tiers);
-					tdtoList.add(tdto);
-
-
-				}
-				return tdtoList;
-			} else {
-				return null;
+				TierDTO tdto = new TierDTO(nick, tiers);
+				tdtoList.add(tdto);
 			}
+			return tdtoList;
+
 		} catch (SQLException e) {
 
 			e.printStackTrace();
@@ -232,7 +216,6 @@ public class QuestionDAO {
 
 	}
 
-
 	public int scoreUpdate(String id, int score) {
 		getConn();
 
@@ -242,6 +225,29 @@ public class QuestionDAO {
 
 			psmt.setInt(1, score);
 			psmt.setString(2, id);
+
+			int row = psmt.executeUpdate();
+			return row;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
+			allClose();
+		}
+
+	}
+
+	// tier업그레이드 메서드
+	public int tierUpgrade(String user_id, String tierLevel) {
+		getConn();
+
+		try {
+			String sql = "update user_info_tb set tier = ? where id= ?";
+			psmt = conn.prepareStatement(sql);
+
+			psmt.setString(1, tierLevel);
+			psmt.setString(2, user_id);
 
 			int row = psmt.executeUpdate();
 			return row;
