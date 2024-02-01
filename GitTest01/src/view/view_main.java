@@ -25,7 +25,7 @@ public class view_main {
 				} else if (choice == 1) { // 로그인
 				
 					cot.login();
-					
+				    
 					
 				} else if (choice == 2) { // 회원가입
 					 // 회원 가입 기능 메서드를 호출해줫어.
