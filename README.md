@@ -10,7 +10,7 @@
 
 ### 기간 :  2024.01.30 ~ 2024.02.01
 ----
-
+<br>
 
 ### 게임 시작 페이지 입니다.
 ![mini1](https://github.com/krafjin56/krafjin56/assets/157596156/82462050-75c6-4e61-a454-ccadd9b573be)
