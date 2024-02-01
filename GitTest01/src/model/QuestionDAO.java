@@ -94,7 +94,7 @@ public class QuestionDAO {
 
 		try {
 
-			String sql = "insert into USER_INFO_TB VALUES(?,?,?,0,0,0)";
+			String sql = "insert into USER_INFO_TB VALUES(?,?,?,0,0)";
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setString(1, user_id);
