@@ -69,7 +69,7 @@ public class Controller {
 					nowUserID = user_dto.getUser_id();
 					break;
 				} else if(input_id.equals(user_dto.getUser_id()) && !intput_pw.equals(user_dto.getUser_pw())) {
-					System.out.println("비밀번호가 틀렸습니다. 비밀번호 다시 입려해주세요.");
+					System.out.println("비밀번호가 틀렸습니다. 비밀번호 다시 입력해주세요.");
 				}
 				
 			}else {
@@ -84,8 +84,8 @@ public class Controller {
 	
 
 
-		// 문제 랜덤 생성 
 
+	// 문제 랜덤 생성 
 			// 문제 푸는 메서드
 			public void solution() {
 				System.out.println("문제 나이도 선택해 주세요. [1]: 하, [2]: 중, [3]: 상 ");
@@ -128,14 +128,47 @@ public class Controller {
 
 					// db에서 정답 과 입력한 정답을 검사해줄꺼야.
 					if (answer.equals(Question.getAnswer())) {
-						System.out.println("정답입니다.");
+            System.out.println("                                   .''.       \r\n"
+            		+ "       .''.      .        *''*    :_\\/_:     . \r\n"
+            		+ "      :_\\/_:   _\\(/_  .:.*_\\/_*   : /\\ :  .'.:.'.\r\n"
+            		+ "  .''.: /\\ :   ./)\\   ':'* /\\ * :  '..'.  -=:o:=-\r\n"
+            		+ " :_\\/_:'.:::.    ' *''*    * '.\\'/.' _\\(/_'.':'.'\r\n"
+            		+ " : /\\ : :::::     *_\\/_*     -= o =-  /)\\    '  *\r\n"
+            		+ "  '..'  ':::'     * /\\ *     .'/.\\'.   '\r\n"
+            		+ "      *            *..*         :\r\n"
+            		+ "       *\r\n"
+            		+ "        *");					
+						System.out.println("╭ ◜◝ ͡ ◜◝ ͡ ◜◝ ͡ ◜◝ ͡ ◜◝ ͡ ◜◝ ͡ ◜◝ ͡ ◜◝ ͡ ◜◝╮\r\n"
+								+ "                    정답입니다!"
+								+ "\r\n" 
+								+ "╰ ◟◞ ͜ ◟◞ ͜ ◟◞ ͜ ◟◞ ͜ ◟◞ ͜ ◟◞ ͜ ◟◞ ͜ ◟◞ ͜ ◟◞ ╯\r\n"
+								+ "O\r\n"
+								+ "°\r\n"
+								+ "/}__/}\r\n"
+								+ "( • ▼•)\r\n"
+								+ "");
+						
+						
 						plus += 2;// 하 난이도가 정답일때마다 plus에 2점을 담아준다 
 						plus1 += 3;// 중 3
 						plus2 += 4; // 상 4
 						
 						
 					} else {
-						System.out.println("오답입니다.  정답은 : " + Question.getAnswer() + " 입니다.");
+					
+						System.out.println("╭ ◜◝ ͡ ◜◝ ͡ ◜◝ ͡ ◜◝ ͡ ◜◝ ͡ ◜◝ ͡ ◜◝ ͡ ◜◝ ͡ ◜◝╮\r\n"
+								+ "           오답입니다.      정답은 : " + Question.getAnswer() +  "입니다."
+								+ "\r\n" 
+								+ "╰ ◟◞ ͜ ◟◞ ͜ ◟◞ ͜ ◟◞ ͜ ◟◞ ͜ ◟◞ ͜ ◟◞ ͜ ◟◞ ͜ ◟◞ ╯\r\n"
+								+ "O\r\n"
+								+ "°\r\n"
+								+ "/}__/}\r\n"
+								+ "( • ▼•)\r\n"
+								+ "");
+					
+					
+					
+					
 					}
 
 				}
@@ -147,7 +180,7 @@ public class Controller {
 					if(row >0) {
 						System.out.println("점수 합산 완료.");
 					} else {
-						System.out.println("실패");
+						System.out.println("점수 합산 실패");
 					}
 					
 				} else if (choice == 2) {
@@ -156,7 +189,7 @@ public class Controller {
 					if(row >0) {
 						System.out.println("점수 합산 완료.");
 					} else {
-						System.out.println("실패");
+						System.out.println("점수 합산 실패");
 					}
 				} else if (choice == 3) {
 					System.out.println("내점수는  " + plus2 + "점 입니다.");
@@ -164,7 +197,7 @@ public class Controller {
 					if(row >0) {
 						System.out.println("점수 합산 완료.");
 					} else {
-						System.out.println("실패");
+						System.out.println("점수 합산 실패");
 					}
 				}
 

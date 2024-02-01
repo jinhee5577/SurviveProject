@@ -28,7 +28,6 @@ public class view_main {
 					
 					
 				} else if (choice == 2) { // 회원가입
-					 // 회원 가입 기능 메서드를 호출해줫어.
 					System.out.print("ID 입력: ");
 					String inputID = sc.next();
 					System.out.print("PW 입력: ");
@@ -38,6 +37,7 @@ public class view_main {
 					
 					
 					
+					// 회원 가입 기능 메서드를 호출해줫어.
 					QuestionDAO qdao = new QuestionDAO();
 					int row = qdao.join(inputID, inputPw, inputNickname);
 				
@@ -45,7 +45,7 @@ public class view_main {
 					if(row>0) {
 						System.out.println("회원가입 성공");
 					}else {
-						System.out.println("오류 발생");
+						System.out.println("회원가입 실패");
 					}
 					
 					
