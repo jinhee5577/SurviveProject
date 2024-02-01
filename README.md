@@ -2,7 +2,7 @@
 
 
 ### <인혜팀>
-#### 팀원  
+### 팀원  
 - 나인혜 :  (https://github.com/inhvee)
 - 오진희 :  (https://github.com/krafjin56)
 - 임정민 :  (https://github.com/duggie27)
