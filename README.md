@@ -1,14 +1,14 @@
-# JAVA MINI PROJECT <낯선 사람의 퀴즈 >
+# 💡JAVA MINI PROJECT <낯선 사람의 퀴즈 >
 
 
 ### <인혜팀>
-### 팀원  
-- **나인혜** :  (https://github.com/inhvee)
+### 👨🏻‍💻 팀원  
+- **나인혜 (팀)** :  (https://github.com/inhvee)
 - **오진희**:  (https://github.com/krafjin56)
 - **임정민**:  (https://github.com/duggie27)
 - **오종원**:  (https://github.com/jong-won-oh)
 
-#### 기간 :  2024.01.30 ~ 2024.02.01
+### 기간 :  2024.01.30 ~ 2024.02.01
 ----
 
 
