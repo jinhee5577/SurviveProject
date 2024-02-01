@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class QuestionDAO {
+public class QuestionDAO{
 	// 데이터를 접근해서 가져오자.
 	private Connection conn; // 이안에서만 접근 가능.
 	private PreparedStatement psmt; // 이안에서만 접근 가능.
@@ -171,7 +171,7 @@ public class QuestionDAO {
 			ArrayList<TierDTO> tdtoList = new ArrayList<TierDTO>();
 			try {
 				
-				String sql ="update user_info_tb set tier = 'Bronze' where score between 100 and 200";
+				String sql ="update user_info_tb set tier = 'Bronze' where score between 0 and 30";
 				psmt = conn.prepareStatement(sql);
 				
 				int row =psmt.executeUpdate();
@@ -200,6 +200,34 @@ public class QuestionDAO {
 			}
 			
 	}
+	
+	
+	
+	
+	// 스코어 업데이트 메서드
+	// 티어 불러오기 메서드 
+		public int scoreUpdate(String id, int score) {
+				getConn();
+				
+				try {
+					String sql ="update user_info_tb set score = ? where id= ?";
+					psmt = conn.prepareStatement(sql);
+					
+					psmt.setInt(1,score);
+					psmt.setString(2,id);
+					
+					int row = psmt.executeUpdate();
+					return row;
+									
+				} catch (SQLException e) {
+					e.printStackTrace();
+					return 0;
+				} finally {
+					allClose();
+				}
+				
+		}
+	
 	
 	
 	

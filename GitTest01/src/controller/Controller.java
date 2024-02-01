@@ -12,6 +12,7 @@ import model.User_infoDTO;
 public class Controller {
 	Scanner sc = new Scanner(System.in);
     QuestionDAO qdao = new QuestionDAO();
+    String nowUserID;
 
 	String answer;
 	// 회원 가입 기능 메서드
@@ -65,6 +66,7 @@ public class Controller {
 			if(user_dto != null) {
 				if(input_id.equals(user_dto.getUser_id()) && intput_pw.equals(user_dto.getUser_pw())) {
 					System.out.println("정상 로그인 되었습니다."); 
+					nowUserID = user_dto.getUser_id();
 					break;
 				} else if(input_id.equals(user_dto.getUser_id()) && !intput_pw.equals(user_dto.getUser_pw())) {
 					System.out.println("비밀번호가 틀렸습니다. 비밀번호 다시 입려해주세요.");
@@ -104,24 +106,21 @@ public class Controller {
 					case 1:
 						num = rd.nextInt(20) + 1;
 						Question = qdao.searchProblem("하", num); // db에서 사용자가 선택한 문제,정답, 점수등 이 담긴 객체를 가져온다.
-						cnt++;// 문제 횟수를 세어줌 
-
 						break;
 					case 2:
 						num = rd.nextInt(20) + 21;
 						Question = qdao.searchProblem("중", num); // db에서 사용자가 선택한 문제,정답, 점수등 이 담긴 객체를 가져온다.
-						cnt++;
 						break;
 					case 3:
 						num = rd.nextInt(20) + 41;
 						Question = qdao.searchProblem("상", num); // db에서 사용자가 선택한 문제,정답, 점수등 이 담긴 객체를 가져온다.
-						cnt++;
 						break;
 					default:
 						System.out.println("잘못 입력하셨습니다.");
 						break;
 					}
-
+					
+					cnt++;// 문제 횟수를 세어줌 
 					System.out.println("문제 " + Question.getNumber() + "번: " + Question.getQuestion());
 
 					System.out.print("정답을 입력해 주세요.  :");
@@ -133,17 +132,40 @@ public class Controller {
 						plus += 2;// 하 난이도가 정답일때마다 plus에 2점을 담아준다 
 						plus1 += 3;// 중 3
 						plus2 += 4; // 상 4
+						
+						
 					} else {
 						System.out.println("오답입니다.  정답은 : " + Question.getAnswer() + " 입니다.");
 					}
 
 				}
+				
+//				qdao.getUserInfo(nowUserID);
 				if (choice == 1) {
 					System.out.println("내점수는 : " + plus + "점 입니다.");
+					int row = qdao.scoreUpdate(nowUserID, plus);
+					if(row >0) {
+						System.out.println("점수 합산 완료.");
+					} else {
+						System.out.println("실패");
+					}
+					
 				} else if (choice == 2) {
 					System.out.println("내점수는 : " + plus1 + "점 입니다.");
+					int row = qdao.scoreUpdate(nowUserID, plus1);
+					if(row >0) {
+						System.out.println("점수 합산 완료.");
+					} else {
+						System.out.println("실패");
+					}
 				} else if (choice == 3) {
 					System.out.println("내점수는  " + plus2 + "점 입니다.");
+					int row = qdao.scoreUpdate(nowUserID, plus2);
+					if(row >0) {
+						System.out.println("점수 합산 완료.");
+					} else {
+						System.out.println("실패");
+					}
 				}
 
 			}
@@ -158,7 +180,7 @@ public class Controller {
 		ArrayList<TierDTO> tierList = qdao.tierMethod();
 		
 		for(TierDTO ele: tierList) {
-			System.out.println(ele.getNickname()+ "은 " + ele.getTier()+ "입니다.");
+			System.out.println(ele.getNickname()+"은[" + ele.getTier()+ "]등급 입니다.");
 		}
 		
 	}
