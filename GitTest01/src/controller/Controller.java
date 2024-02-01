@@ -94,7 +94,7 @@ public class Controller {
 
 	// 문제 푸는 메서드
 	public void solution() {
-		System.out.println("문제 나이도 선택해 주세요. [1]: 하, [2]: 중, [3]: 상 ");
+		System.out.println("문제 난이도 선택해 주세요. [1]: 하, [2]: 중, [3]: 상 ");
 		int choice = sc.nextInt();
 		int plus = 0;
 		int plus1 = 0;
