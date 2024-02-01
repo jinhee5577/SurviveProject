@@ -94,7 +94,16 @@ public class Controller {
 
 	// 문제 푸는 메서드
 	public void solution() {
-		System.out.println("문제 나이도 선택해 주세요. [1]: 하, [2]: 중, [3]: 상 ");
+		System.out.println("|￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣|\r\n"
+				+ "|　넌센스 퀴즈 게임!　　　　　　　　　　　　　 　　[－][口][×] |\r\n"
+				+ "|￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣|\r\n"
+				+ "|  난이도를 선택해 주세요      　　                  |\r\n"
+				+ "|　        　　　　　　　　　　　　　　　　　　　　　　　　     |\r\n"
+				+ "|　　＿＿＿＿＿＿＿＿　　　　＿＿＿＿＿＿＿＿　　　　＿＿＿＿＿＿＿　　|\r\n"
+				+ "| 　|[1] 하    |　　　｜[2] 중    ｜ 　 |[3] 상  　|  |\r\n"
+				+ "|　　￣￣￣￣￣￣￣￣　　　　￣￣￣￣￣￣￣￣　　　　￣￣￣￣￣￣￣　　|\r\n"
+				+ "￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣");
+		
 		int choice = sc.nextInt();
 		int plus = 0;
 		int plus1 = 0;
@@ -127,10 +136,19 @@ public class Controller {
 			}
 
 			cnt++;// 문제 횟수를 세어줌
-			System.out.println("문제 " + Question.getNumber() + "번: " + Question.getQuestion());
-
-			System.out.print("정답을 입력해 주세요.  :");
+			System.out.println("|￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣|\r\n"
+					+ "|　문제 발생  !　　   　　　　　　　　　　　 　　                  [－][口][×] |\r\n"
+					+ "|￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣|\r\n"
+					+ "|　문제 " +Question.getNumber()+ "번:" + Question.getQuestion()+ "                               |\r\n"
+					+ "|　        　　　　　　　　　　　　　　　　　　　　　　　　                       |\r\n"
+					+ "|　　＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿|\r\n"
+					+ "| 　| 문제를 안푸는건 없습니다 푸세요ㅋ          　  　                    |\r\n"
+					+ "|　　￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣|\r\n"
+					+ "￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣");
+			System.out.println("정답 입력 : ");
 			answer = sc.next();
+			
+			
 
 			// db에서 정답 과 입력한 정답을 검사해줄꺼야.
 			if (answer.equals(Question.getAnswer())) {
@@ -208,15 +226,33 @@ public class Controller {
 	public void showTier() {
 		TierUpgrade(nowUserID, sumScore); // 합산 점수 별로 티어 승급 해줌.
 		ArrayList<TierDTO> tierList = qdao.tierMethod();
-		System.out.println();
-		System.out.println("=========전체 회원 티어============");
+		
+		System.out.println("   ________________________________________\r\n"
+				+ " / \\                                       \\.\r\n"
+				+ "|   | ╔═══*.·:·.☽✧ 전체 회원 티어 ✧☾.·:·.*═══╗  |.\r\n"
+				+ " \\_ |                                       |.\r\n"
+				+ "    |                                       |.\r\n");
+		
 		
 		for (TierDTO ele : tierList) {
-			System.out.println(ele.getNickname() + "은(는)[ " + ele.getTier() + " ]등급입니다.");
+			System.out.println("    |" +"\t" + ele.getNickname() + "은(는)[" + ele.getTier() +"]입니다."+"\t"+"            |.");
+			
+			
 		}
-
+		
+		System.out.println(""
+				
+				+ "    |                                       |.\r\n"
+				+ "    |                                       |.\r\n"
+				+ "    | ╚═══════*.·:·.☽✧ ✦ ✧☾.·:·.*════════╝  |.\r\n"
+				+ "    |    ___________________________________|_____\r\n"
+				+ "    |  /                                         /.\r\n"
+				+ "    \\_/_________________________________________/.");
+	System.out.println();
+	System.out.println();
+	System.out.println();
 	}
-	
+
 	
 	
 	//  tier업그레이드 메서드
