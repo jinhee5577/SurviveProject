@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class QuestionDAO{
+public class QuestionDAO {
 	// 데이터를 접근해서 가져오자.
 	private Connection conn; // 이안에서만 접근 가능.
 	private PreparedStatement psmt; // 이안에서만 접근 가능.
@@ -24,7 +24,7 @@ public class QuestionDAO{
 
 			conn = DriverManager.getConnection(url, user, pw); // 이메서드를 통해서 연결이됨.
 			if (conn != null) {
-			//	System.out.println("연결 성공");
+				// System.out.println("연결 성공");
 			} else {
 				System.out.println("연결 실패");
 			}
@@ -51,80 +51,70 @@ public class QuestionDAO{
 		}
 	}
 
-	
-	
 	// 선택 문제 가져오는 기능 메서드
 	public QuestionDTO searchProblem(String level, int n) {
 		// 각메소드 마다 db연결 해주자.
 		getConn();
-	
-			try {
-				// sql통과 통로
-				String sql = "select * from QNA_TB where Q_LEVEL = ? AND Q_NUM = ?";
-				psmt = conn.prepareStatement(sql); // psmt 문 열었고
 
-				// sql문 psmt통로 넘겨 주기전에 ?채우기 - ?가 없으면 생략.
-				psmt.setString(1, level);
-				psmt.setInt(2, n);
+		try {
+			// sql통과 통로
+			String sql = "select * from QNA_TB where Q_LEVEL = ? AND Q_NUM = ?";
+			psmt = conn.prepareStatement(sql); // psmt 문 열었고
 
-				rs = psmt.executeQuery(); // 여긴 sql - select문이 executeQuery()를 써야함.
+			// sql문 psmt통로 넘겨 주기전에 ?채우기 - ?가 없으면 생략.
+			psmt.setString(1, level);
+			psmt.setInt(2, n);
 
-				if (rs.next()) {
-					String problem = rs.getString("QUESTION");
-					int num = rs.getInt("Q_NUM");
-					String answer = rs.getString("ANSWER");
-					
-					QuestionDTO qdto = new QuestionDTO(problem, num, answer); // obj에 담아서 뱉어줄거야.
-					return qdto;
-				} else {
-					return null;
-				}
-				
-				
+			rs = psmt.executeQuery(); // 여긴 sql - select문이 executeQuery()를 써야함.
 
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if (rs.next()) {
+				String problem = rs.getString("QUESTION");
+				int num = rs.getInt("Q_NUM");
+				String answer = rs.getString("ANSWER");
+
+				QuestionDTO qdto = new QuestionDTO(problem, num, answer); // obj에 담아서 뱉어줄거야.
+				return qdto;
+			} else {
 				return null;
-			} finally {
-				// 이메소드에서 할일 끝났으니 문닫자.
-				allClose();
 			}
-			
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			// 이메소드에서 할일 끝났으니 문닫자.
+			allClose();
+		}
+
 	}
 
-	
 	// 회원가입 정보 DB전송 메서드
 	public int join(String user_id, String user_pw, String user_name) {
 		getConn();
-		
+
 		try {
-			
-			
 			String sql = "insert into USER_INFO_TB VALUES(?,?,?,0,0,0)";
-			psmt =conn.prepareStatement(sql);
-			
+			psmt = conn.prepareStatement(sql);
+
 			psmt.setString(1, user_id);
 			psmt.setString(2, user_pw);
 			psmt.setString(3, user_name);
-			
+
 			int row = psmt.executeUpdate();
 			return row;
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return 0;
-		}
-		finally {
+		} finally {
 			allClose();
 		}
-		
-		
+
 	}
 	
 	
-	
-	
+
 	// 로그인 정보 메서드
 	// db에서 유저 정보 가져오는 기능 메서드
 	public User_infoDTO getUserInfo(String input_id) {
@@ -162,74 +152,102 @@ public class QuestionDAO{
 
 	}
 
+	
+	
+	// 현재 유저의 score점수 가져 오는 메소드.
+	public ScoreDTO getScore(String user_id) {
+		// 각메소드 마다 db연결 해주자.
+		getConn();
 
-	
-	
-	// 티어 불러오기 메서드 
-	public ArrayList<TierDTO> tierMethod() {
-			getConn();
-			ArrayList<TierDTO> tdtoList = new ArrayList<TierDTO>();
-			try {
+		try {
+			// sql통과 통로
+			String sql = "select * from user_info_tb where id = ?";
+			psmt = conn.prepareStatement(sql); // psmt 문 열었고
+
+			// sql문 psmt통로 넘겨 주기전에 ?채우기 - ?가 없으면 생략.
+			psmt.setString(1, user_id);
+
+			rs = psmt.executeQuery(); // 여긴 sql - select문이 executeQuery()를 써야함.
+
+			if (rs.next()) {
+				int score = rs.getInt("score");
+				String tier = rs.getString("tier");
+
+				ScoreDTO score_dto = new ScoreDTO(score, tier); // obj에 담아서 뱉어줄거야.
+				return score_dto;
 				
-				String sql ="update user_info_tb set tier = 'Bronze' where score between 0 and 30";
-				psmt = conn.prepareStatement(sql);
-				
-				int row =psmt.executeUpdate();
-				if(row>0) {
-					String sql2 = "select nickname,tier from user_info_tb";
-					psmt = conn.prepareStatement(sql2);
-					rs = psmt.executeQuery();
-					
-					while(rs.next()) {
-						String nick=rs.getString(1);
-						String tiers=rs.getString(2);
-						
-						TierDTO tdto = new TierDTO(nick, tiers);
-						tdtoList.add(tdto);
-					}
-					return tdtoList;
-				} else {
-					return null;
-				}				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return null;
-			} finally {
-				allClose();
-			}
-			
+			} else { return null; }
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			// 이메소드에서 할일 끝났으니 문닫자.
+			allClose();
+		}
+
 	}
 	
 	
-	
-	
-	// 스코어 업데이트 메서드
-	// 티어 불러오기 메서드 
-		public int scoreUpdate(String id, int score) {
-				getConn();
-				
-				try {
-					String sql ="update user_info_tb set score = ? where id= ?";
-					psmt = conn.prepareStatement(sql);
-					
-					psmt.setInt(1,score);
-					psmt.setString(2,id);
-					
-					int row = psmt.executeUpdate();
-					return row;
-									
-				} catch (SQLException e) {
-					e.printStackTrace();
-					return 0;
-				} finally {
-					allClose();
+
+	// 티어 불러오기 메서드
+	public ArrayList<TierDTO> tierMethod() {
+		getConn();
+		ArrayList<TierDTO> tdtoList = new ArrayList<TierDTO>();
+		try {
+
+			String sql = "update user_info_tb set tier = 'Bronze' where score between 0 and 30";
+			psmt = conn.prepareStatement(sql);
+
+			int row = psmt.executeUpdate();
+			if (row > 0) {
+				String sql2 = "select nickname,tier from user_info_tb";
+				psmt = conn.prepareStatement(sql2);
+				rs = psmt.executeQuery();
+
+				while (rs.next()) {
+					String nick = rs.getString(1);
+					String tiers = rs.getString(2);
+
+					TierDTO tdto = new TierDTO(nick, tiers);
+					tdtoList.add(tdto);
 				}
-				
+				return tdtoList;
+			} else {
+				return null;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			allClose();
 		}
-	
-	
-	
-	
+
+	}
+
+
+	// 스코어 업데이트 메서드
+	// 티어 불러오기 메서드
+	public int scoreUpdate(String id, int score) {
+		getConn();
+
+		try {
+			String sql = "update user_info_tb set score = ? where id= ?";
+			psmt = conn.prepareStatement(sql);
+
+			psmt.setInt(1, score);
+			psmt.setString(2, id);
+
+			int row = psmt.executeUpdate();
+			return row;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
+			allClose();
+		}
+
+	}
 
 }

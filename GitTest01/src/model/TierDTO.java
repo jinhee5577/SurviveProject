@@ -1,10 +1,10 @@
 package model;
 
 public class TierDTO {
-
-	
 	private String nickname ;
 	private String tier;
+	
+	
 	//생성자
 	public TierDTO(String nickname, String tier) {
 		
@@ -12,7 +12,7 @@ public class TierDTO {
 		this.tier = tier;
 	}
 	
-	//게터
+	// getrer
 	public String getNickname() {
 		return nickname;
 	}
