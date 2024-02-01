@@ -193,7 +193,7 @@ public class QuestionDAO {
 		getConn();
 		ArrayList<TierDTO> tdtoList = new ArrayList<TierDTO>();
 		try {
-			String sql2 = "select nickname,tier from user_info_tb";
+			String sql2 = "select nickname,tier from user_info_tb order by score desc";
 			psmt = conn.prepareStatement(sql2);
 			rs = psmt.executeQuery();
 
