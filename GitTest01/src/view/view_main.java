@@ -1,8 +1,11 @@
 package view;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import controller.Controller;
 import model.QuestionDAO;
+import model.QuestionDTO;
+import model.TierDTO;
 import model.User_infoDTO;
 
 public class view_main {
@@ -25,6 +28,8 @@ public class view_main {
 				} else if (choice == 1) { // 로그인
 				
 					cot.login();
+					
+					cot.myinfo();
 					
 					
 				} else if (choice == 2) { // 회원가입
@@ -50,12 +55,14 @@ public class view_main {
 					
 					
 
-				} else if (choice == 3) { // 게임 캐릭터 선택 or 게임시작
+				} else if (choice == 3) { // 게임시작
 					// 문제 풀고 정답까지 비교 하는 메소드 호출 해줌.
+
 					cot.solution();
 
 				} else if (choice == 4) {// 랭킹 조회 
 					cot.showTier();
+					
 
 
 

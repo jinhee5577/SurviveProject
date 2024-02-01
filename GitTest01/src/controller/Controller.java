@@ -13,7 +13,9 @@ public class Controller {
 	Scanner sc = new Scanner(System.in);
     QuestionDAO qdao = new QuestionDAO();
     String nowUserID;
-
+    String nowUsernickname;
+    String nowUsertier;
+    
 	String answer;
 	// 회원 가입 기능 메서드
 	public void join_method() {
@@ -67,9 +69,10 @@ public class Controller {
 				if(input_id.equals(user_dto.getUser_id()) && intput_pw.equals(user_dto.getUser_pw())) {
 					System.out.println("정상 로그인 되었습니다."); 
 					nowUserID = user_dto.getUser_id();
+					nowUsernickname = user_dto.getUser_name();
 					break;
 				} else if(input_id.equals(user_dto.getUser_id()) && !intput_pw.equals(user_dto.getUser_pw())) {
-					System.out.println("비밀번호가 틀렸습니다. 비밀번호 다시 입려해주세요.");
+					System.out.println("비밀번호가 틀렸습니다. 비밀번호 다시 입력해주세요.");
 				}
 				
 			}else {
@@ -88,7 +91,7 @@ public class Controller {
 
 			// 문제 푸는 메서드
 			public void solution() {
-				System.out.println("문제 나이도 선택해 주세요. [1]: 하, [2]: 중, [3]: 상 ");
+				System.out.println("문제 난이도를 선택해 주세요. [1]: 하, [2]: 중, [3]: 상 ");
 				int choice = sc.nextInt();
 				int plus = 0;
 				int plus1 = 0;
@@ -185,4 +188,17 @@ public class Controller {
 		
 	}
 
+	// 
+	public void myinfo() {
+		System.out.println("=========유저 정보==========");
+		System.out.println("아이디: "+nowUserID);
+		System.out.println("닉네임: "+nowUsernickname);
+		
+	}
+	
+	
+	
+	
+	
+	
 }

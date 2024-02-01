@@ -162,7 +162,6 @@ public class QuestionDAO{
 
 	}
 
-
 	
 	
 	// 티어 불러오기 메서드 
@@ -201,11 +200,19 @@ public class QuestionDAO{
 			
 	}
 	
-	
+	public void showtier() {
+		getConn();
+		String sql = "select nickname,tier from user_info_tb";
+		try {
+			psmt = conn.prepareStatement(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	
 	// 스코어 업데이트 메서드
-	// 티어 불러오기 메서드 
 		public int scoreUpdate(String id, int score) {
 				getConn();
 				
