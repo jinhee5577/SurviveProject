@@ -114,6 +114,7 @@ public class QuestionDAO {
 
 	}
 
+
 	// 로그인 정보 메서드
 	// db에서 유저 정보 가져오는 기능 메서드
 	public User_infoDTO getUserInfo(String input_id) {
@@ -151,6 +152,48 @@ public class QuestionDAO {
 
 	}
 
+
+	
+	
+
+	// 현재 유저의 score점수 가져 오는 메소드.
+	public ScoreDTO getScore(String user_id) {
+		// 각메소드 마다 db연결 해주자.
+		getConn();
+
+		try {
+			// sql통과 통로
+			String sql = "select * from user_info_tb where id = ?";
+			psmt = conn.prepareStatement(sql); // psmt 문 열었고
+
+			// sql문 psmt통로 넘겨 주기전에 ?채우기 - ?가 없으면 생략.
+			psmt.setString(1, user_id);
+
+			rs = psmt.executeQuery(); // 여긴 sql - select문이 executeQuery()를 써야함.
+
+			if (rs.next()) {
+				int score = rs.getInt("score");
+				String tier = rs.getString("tier");
+
+				ScoreDTO score_dto = new ScoreDTO(score, tier); // obj에 담아서 뱉어줄거야.
+				return score_dto;
+
+				
+			} else { return null; }
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			// 이메소드에서 할일 끝났으니 문닫자.
+			allClose();
+		}
+
+	}
+	
+
+	
+
 	// 티어 불러오기 메서드
 	public ArrayList<TierDTO> tierMethod() {
 		getConn();
@@ -172,13 +215,15 @@ public class QuestionDAO {
 
 					TierDTO tdto = new TierDTO(nick, tiers);
 					tdtoList.add(tdto);
+
+
 				}
 				return tdtoList;
 			} else {
 				return null;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 			return null;
 		} finally {
@@ -187,7 +232,7 @@ public class QuestionDAO {
 
 	}
 
-	// 스코어 업데이트 메서드
+
 	public int scoreUpdate(String id, int score) {
 		getConn();
 
