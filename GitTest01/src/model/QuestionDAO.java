@@ -116,15 +116,16 @@ public class QuestionDAO {
 
 	// 회원 탈퇴 메서드
 	
-	public int delete(String user_id) {
+	public int delete(String user_id, String user_pw) {
 		getConn();
 
 		try {
 
-			String sql = "delete from user_info_tb where id =?";
+			String sql = "delete from user_info_tb where id =? and pw=?";
 			psmt = conn.prepareStatement(sql);
 			
 			psmt.setString(1, user_id);
+			psmt.setString(2, user_pw);
 			
 
 			int row = psmt.executeUpdate();
