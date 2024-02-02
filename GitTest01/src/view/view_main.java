@@ -68,7 +68,7 @@ public class view_main {
 							// 문제 풀고 정답까지 비교 하는 메소드 호출 해줌.
 							cot.solution();
 
-						} else if (controller == 4) {// 랭킹 조회       
+						} else if (controller == 4) {// 랭킹 조회              
 							cot.showTier();
 						} else if (controller == 5) {// 랭킹 조회
 							System.out.println("게임을 완전히 종료 합니다.");
