@@ -59,14 +59,8 @@ public class Controller {
 		}
 	}
 
-<<<<<<< HEAD
-	// 문제 푸는 기능 메서드
 
-	
-	
-	// 문제 랜덤 생성
-=======
->>>>>>> branch 'master' of https://github.com/2023-SMHRD-KDT-AI-16/survive.git
+
 
 	// 문제 푸는 메서드
 	public void solution() {
@@ -240,9 +234,8 @@ public class Controller {
 	System.out.println();
 	}
 
-<<<<<<< HEAD
-
-=======
+	
+	
 // 회원가입 메서드
 	public void joinId() {
 		// 회원 가입 기능 메서드를 호출해줫어.
@@ -266,7 +259,7 @@ public class Controller {
 		}
 
 	}
->>>>>>> branch 'master' of https://github.com/2023-SMHRD-KDT-AI-16/survive.git
+
 	
 	
 	
