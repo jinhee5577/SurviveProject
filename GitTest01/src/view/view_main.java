@@ -46,7 +46,9 @@ public class view_main {
 
 				int choice = sc.nextInt();
 				if (choice == 6) {
-					System.out.println("게임을 종료합니다."); 
+
+					System.out.println("게임을 종료합니다.");
+
 					break;
 				} else if (choice == 1) { // 로그인
 					cot.login();
@@ -75,7 +77,9 @@ public class view_main {
 						}else if(controller == 5) {//---------------------------------------------------회원탈퇴
 							cot.deleteId();
 						}
-						else if (controller == 6) {// 게임종료
+
+						else if (controller == 6) {//
+
 							System.out.println("게임을 완전히 종료 합니다.");
 							return;
 						}

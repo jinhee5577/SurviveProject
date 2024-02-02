@@ -18,8 +18,8 @@ public class Controller {
 	int sumScore;
 	String answer;
 	User_infoDTO user_dto;
-	
-	//외부에서 nowUserID 접근.
+
+	// 외부에서 nowUserID 접근.
 	public String getnNowUserID() {
 		return nowUserID;
 	}
@@ -55,10 +55,11 @@ public class Controller {
 
 			} else {
 				System.out.println("아이디또는 비밀번호가 틀렸습니다. 다시 입력해주세요.");
-
 			}
 		}
 	}
+
+
 
 
 	// 문제 푸는 메서드
@@ -149,6 +150,8 @@ public class Controller {
 
 		}
 
+		
+		
 		// qdao.getUserInfo(nowUserID);
 		if (choice == 1) {
 			System.out.println("내점수는 : " + plus + "점 입니다.");
@@ -193,11 +196,14 @@ public class Controller {
 		}
 
 	}
+	
+	
 
 	// 티어 show 메서드
 	public void showTier() {
 		TierUpgrade(nowUserID, sumScore); // 합산 점수 별로 티어 승급 해줌.
 		ArrayList<TierDTO> tierList = qdao.tierMethod();
+
 		
 		System.out.println("   ________________________________________\r\n"
 				+ " / \\                                       \\.\r\n"
@@ -206,10 +212,13 @@ public class Controller {
 				+ "    |                                       |.\r\n");
 		
 		
+
 		for (TierDTO ele : tierList) {
+
 			System.out.println("    |" +"\t" + ele.getNickname() + "은(는)[" + ele.getTier() +"]입니다."+"\t"+"            |.");
 			
 			
+
 		}
 		
 		System.out.println(""
@@ -225,6 +234,8 @@ public class Controller {
 	System.out.println();
 	}
 
+	
+	
 // 회원가입 메서드
 	public void joinId() {
 		// 회원 가입 기능 메서드를 호출해줫어.
@@ -248,6 +259,7 @@ public class Controller {
 		}
 
 	}
+
 	
 	
 	
@@ -255,8 +267,10 @@ public class Controller {
 	public void deleteId() {
 	System.out.print("삭제할 ID 입력: ");
     String inputName = sc.next();
+    System.out.print("비밀번호 확인: ");
+    String inputPw = sc.next();
     QuestionDAO pdao = new QuestionDAO();
-    int row =pdao.delete(inputName);
+    int row =pdao.delete(inputName,inputPw);
     
     
     if(row>0) {
@@ -269,54 +283,47 @@ public class Controller {
 	}
 	
 	//  tier업그레이드 메서드
+
 	public void TierUpgrade(String user_id, int sumScore) {
-		
-		if(sumScore <= 20) {
-			 int row = qdao.tierUpgrade(nowUserID, "브론즈");
-			 if(row > 0) {
-				 System.out.println(user_dto.getUser_name()+ "님 [브론즈]승급 성공");
-			 }else {
-				 System.out.println("브론즈 실패");
-			 }
-		} else if(sumScore <= 35) {
+
+		if (sumScore <= 20) {
+			int row = qdao.tierUpgrade(nowUserID, "브론즈");
+			if (row > 0) {
+				System.out.println(user_dto.getUser_name() + "님 [브론즈]승급 성공");
+			} else {
+				System.out.println("브론즈 실패");
+			}
+		} else if (sumScore <= 35) {
 			int row = qdao.tierUpgrade(nowUserID, "실버");
-			if(row > 0) {
-				 System.out.println(user_dto.getUser_name()+"님 [실버]승급 성공");
-			 }else {
-				 System.out.println("실버 실패");
-			 }
-		} else if(sumScore <= 50) {
+			if (row > 0) {
+				System.out.println(user_dto.getUser_name() + "님 [실버]승급 성공");
+			} else {
+				System.out.println("실버 실패");
+			}
+		} else if (sumScore <= 50) {
 			int row = qdao.tierUpgrade(nowUserID, "골드");
-			if(row > 0) {
-				 System.out.println(user_dto.getUser_name()+"님 [골드]승급 성공");
-			 }else {
-				 System.out.println("골드 실패");
-			 }
-			
-		} else if(sumScore <= 65) {
+			if (row > 0) {
+				System.out.println(user_dto.getUser_name() + "님 [골드]승급 성공");
+			} else {
+				System.out.println("골드 실패");
+			}
+
+		} else if (sumScore <= 65) {
 			int row = qdao.tierUpgrade(nowUserID, "다이아몬드");
-			if(row > 0) {
-				 System.out.println(user_dto.getUser_name()+"님 [다이아몬드]승급 성공");
-			 }else {
-				 System.out.println("다이 실패");
-			 }
+			if (row > 0) {
+				System.out.println(user_dto.getUser_name() + "님 [다이아몬드]승급 성공");
+			} else {
+				System.out.println("다이 실패");
+			}
 		} else {
 			int row = qdao.tierUpgrade(nowUserID, "챌린저");
-			if(row > 0) {
-				 System.out.println(user_dto.getUser_name()+"님 [챌린저]승급 성공");
-			 }else {
-				 System.out.println("챌 실패");
-			 }
+			if (row > 0) {
+				System.out.println(user_dto.getUser_name() + "님 [챌린저]승급 성공");
+			} else {
+				System.out.println("챌 실패");
+			}
 		}
-		
-		
+
 	}
-	
-	
-	
-	
-	
-	
-	
 
 }
