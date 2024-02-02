@@ -149,53 +149,35 @@ public class Controller {
 			}
 
 		}
-
 		
 		
 		// qdao.getUserInfo(nowUserID);
 		if (choice == 1) {
-			System.out.println("내점수는 : " + plus + "점 입니다.");
-			ScoreDTO score_dto = qdao.getScore(nowUserID); // 유저의 기존 score점수가 담긴 객체를 뱉음.
-			sumScore = plus + score_dto.getScore(); // db에서 가져온 점수와 현재 합산 수를 더했다.
-			System.out.println("현재 합산 점수는: " + sumScore);
-
-			// 다시 합산된 점수를 sql로 보내서 db점수를 갈아치움.
-			int row2 = qdao.scoreUpdate(nowUserID, sumScore);
-			if (row2 > 0) {
-				System.out.println("정상 합산 되었습니다.");
-			} else {
-				System.out.println("합산이 실패 했습니다.");
-			}
-
+			sortSumFunc(plus);
 		} else if (choice == 2) {
-			System.out.println("내점수는 : " + plus1 + "점 입니다.");
-			ScoreDTO score_dto = qdao.getScore(nowUserID); // 유저의 기존 score점수가 담긴 객체를 뱉음.
-			sumScore = plus1 + score_dto.getScore(); // db에서 가져온 점수와 현재 합산 수를 더했다.
-			System.out.println("현재 합산 점수는: " + sumScore);
-
-			// 다시 합산된 점수를 sql로 보내서 db점수를 갈아치움.
-			int row2 = qdao.scoreUpdate(nowUserID, sumScore);
-			if (row2 > 0) {
-				System.out.println("정상 합산 되었습니다.");
-			} else {
-				System.out.println("합산이 실패 했습니다.");
-			}
+			sortSumFunc(plus1);
 		} else if (choice == 3) {
-			System.out.println("내점수는  " + plus2 + "점 입니다.");
-			ScoreDTO score_dto = qdao.getScore(nowUserID); // 유저의 기존 score점수가 담긴 객체를 뱉음.
-			sumScore = plus2 + score_dto.getScore(); // db에서 가져온 점수와 현재 합산 수를 더했다.
-			System.out.println("현재 합산 점수는: " + sumScore);
-
-			// 다시 합산된 점수를 sql로 보내서 db점수를 갈아치움.
-			int row2 = qdao.scoreUpdate(nowUserID, sumScore);
-			if (row2 > 0) {
-				System.out.println("정상 합산 되었습니다.");
-			} else {
-				System.out.println("합산이 실패 했습니다.");
-			}
+			sortSumFunc(plus2);
 		}
 
 	}
+	
+	
+	// 위반복 점수 합산 축약 코드
+	public void sortSumFunc(int plus) {
+		System.out.println("내점수는 : " + plus + "점 입니다.");
+		ScoreDTO score_dto = qdao.getScore(nowUserID); // 유저의 기존 score점수가 담긴 객체를 뱉음.
+		sumScore = plus + score_dto.getScore(); // db에서 가져온 점수와 현재 합산 수를 더했다.
+		System.out.println("현재 합산 점수는: " + sumScore);
+
+		// 다시 합산된 점수를 sql로 보내서 db점수를 갈아치움.
+		int row2 = qdao.scoreUpdate(nowUserID, sumScore);
+		if (row2 > 0) {
+			System.out.println("정상 합산 되었습니다.");
+		} else {
+			System.out.println("합산이 실패 했습니다.");
+		}
+	}	
 	
 	
 
