@@ -24,36 +24,8 @@ public class Controller {
 		return nowUserID;
 	}
 
-	// 회원 가입 기능 메서드
-	public void join_method() {
-		System.out.println("회원가입 페이지");
-		boolean check = true;
 
-		while (check) {
-			System.out.print("아이디 입력 해주세요. : ");
-			String input_id = sc.next();
-			// 아이디 중복 검사.
-			if (input_id.equals("db에서 가져온 아이디 비교 할겁니다.")) {
-				System.out.println("입력하신 아이디가 존재합니다. 다른아이디로 재입력 해주세요.");
-
-			} else { // db에 입력받은 아이디가 없다면 입력한 아이디를 사용할수 있습니다.
-				// db에 같은 아이디가 없다면 이안에서 비밀번호 입력받아서 비밀번확인 받고 아이디와 비밀번호를 db로 보낼겁니다.
-
-				System.out.print("비밀번호 입력해 주세요. : "); // 비밀번호 확인
-				String intput_pw = sc.next();
-
-				System.out.print("닉네임 입력해 주세요. : ");
-				String input_userName = sc.next(); // id,pw,userName DB에저장
-
-				User_infoDTO userInfo = new User_infoDTO(input_id, intput_pw, input_userName);
-				// 이때 유저 정보가 담긴 객체를 DAO메서드에서 DB로 전송해준다.
-				check = false;
-				break;
-			}
-		}
-
-	}
-
+	
 	// 로그인 기능 메서드
 	public void login() {
 		// 입력받은 id,pw를 db에서 가져온 id,pw가 동일 한지 비교하여 로그인 시켜준다.
@@ -87,14 +59,18 @@ public class Controller {
 		}
 	}
 
+<<<<<<< HEAD
 	// 문제 푸는 기능 메서드
 
 	
 	
 	// 문제 랜덤 생성
+=======
+>>>>>>> branch 'master' of https://github.com/2023-SMHRD-KDT-AI-16/survive.git
 
 	// 문제 푸는 메서드
 	public void solution() {
+
 		System.out.println("|￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣|\r\n"
 				+ "|　넌센스 퀴즈 게임!　　　　　　　　　　　　　 　　[－][口][×] |\r\n"
 				+ "|￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣|\r\n"
@@ -104,6 +80,8 @@ public class Controller {
 				+ "| 　|[1] 하    |　　　｜[2] 중    ｜ 　 |[3] 상  　|  |\r\n"
 				+ "|　　￣￣￣￣￣￣￣￣　　　　￣￣￣￣￣￣￣￣　　　　￣￣￣￣￣￣￣　　|\r\n"
 				+ "￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣");
+		
+
 		
 		int choice = sc.nextInt();
 		int plus = 0;
@@ -262,8 +240,52 @@ public class Controller {
 	System.out.println();
 	}
 
+<<<<<<< HEAD
 
+=======
+// 회원가입 메서드
+	public void joinId() {
+		// 회원 가입 기능 메서드를 호출해줫어.
+
+		System.out.print("ID 입력: ");
+		String inputID = sc.next();
+		System.out.print("PW 입력: ");
+		String inputPw = sc.next();
+		System.out.print("닉네임 입력: ");
+		String inputNickname = sc.next();
+
+		QuestionDAO qdao = new QuestionDAO();
+		int row = qdao.join(inputID, inputPw, inputNickname);
+
+		if (row > 0) {
+			System.out.println("회원가입 성공");
+
+		} else {
+			System.out.println("오류 발생");
+
+		}
+
+	}
+>>>>>>> branch 'master' of https://github.com/2023-SMHRD-KDT-AI-16/survive.git
 	
+	
+	
+	// 회원탈퇴 메서드
+	public void deleteId() {
+	System.out.print("삭제할 ID 입력: ");
+    String inputName = sc.next();
+    QuestionDAO pdao = new QuestionDAO();
+    int row =pdao.delete(inputName);
+    
+    
+    if(row>0) {
+ 	   System.out.println("삭제 완료!");
+    }else {
+ 	   System.out.println("insert failed");
+    }
+		
+		
+	}
 	
 	//  tier업그레이드 메서드
 

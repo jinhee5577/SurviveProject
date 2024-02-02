@@ -52,15 +52,15 @@ public class view_main {
 					cot.login();
 
 					while (true) {
-					    System.out.println("|￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣|\r\n"
-			             		+ "|　넌센스 퀴즈 게임!　　　　　　　　　　　　　 　　[－][口][×] |\r\n"
-			             		+ "|￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣|\r\n"
-			             		+ "|　넌센스 퀴즈에 오신걸 환영합니다 　　                  |\r\n"
-			             		+ "|　        　　　　　　　　　　　　　　　　　　　　　　　　     |\r\n"
-			             		+ "|　　＿＿＿＿＿＿＿＿　　　　＿＿＿＿＿＿＿＿　　　　＿＿＿＿＿＿＿　　|\r\n"
-			             		+ "| 　|[3] 게임시작|　　　｜[4]티어조회｜ 　  |[5]게임종료|　|\r\n"
-			             		+ "|　　￣￣￣￣￣￣￣￣　　　　￣￣￣￣￣￣￣￣　　　　￣￣￣￣￣￣￣　　|\r\n"
-			             		+ "￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣\r\n"
+					    System.out.println("|￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣|\r\n"
+			             		+ "|　넌센스 퀴즈 게임!　　　　　　　　　　　　　                   　　[－][口][×] |\r\n"
+			             		+ "|￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣|\r\n"
+			             		+ "|　넌센스 퀴즈에 오신걸 환영합니다 　　                                   |\r\n"
+			             		+ "|　        　　　　　　　　　　　　　　　　　　　　　　　　                      |\r\n"
+			             		+ "|　　＿＿＿＿＿＿＿＿　　　　＿＿＿＿＿＿＿＿　　　　＿＿＿＿＿＿＿＿　    ＿＿＿＿＿＿＿＿   |\r\n"
+			             		+ "| 　|[3]게임시작|　　 　｜[4]티어조회｜ 　  |[5]회원탈퇴 |    |[6]게임종료 |  |\r\n"
+			             		+ "|　　￣￣￣￣￣￣￣￣　　　　￣￣￣￣￣￣￣￣　　　　￣￣￣￣￣￣￣￣　　   ￣￣￣￣￣￣￣￣   |\r\n"
+			             		+ "￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣\r\n"
 			             		+ "");
 				
 						int controller = sc.nextInt();
@@ -68,36 +68,22 @@ public class view_main {
 							// 문제 풀고 정답까지 비교 하는 메소드 호출 해줌.
 							cot.solution();
 
-						} else if (controller == 4) {// 랭킹 조회       
+
+						} else if (controller == 4) {// 랭킹 조회              
+
 							cot.showTier();
-						} else if (controller == 5) {// 랭킹 조회
+						}else if(controller == 5) {//---------------------------------------------------회원탈퇴
+							cot.deleteId();
+						}
+						else if (controller == 6) {// 랭킹 조회
 							System.out.println("게임을 완전히 종료 합니다.");
 							return;
 						}
 					}
 
 				} else if (choice == 2) { // 회원가입
-
-					// 회원 가입 기능 메서드를 호출해줫어.
-
-					System.out.print("ID 입력: ");
-					String inputID = sc.next();
-					System.out.print("PW 입력: ");
-					String inputPw = sc.next();
-					System.out.print("닉네임 입력: ");
-					String inputNickname = sc.next();
-
-					QuestionDAO qdao = new QuestionDAO();
-					int row = qdao.join(inputID, inputPw, inputNickname);
-
-					if (row > 0) {
-						System.out.println("회원가입 성공");
-
-					} else {
-						System.out.println("오류 발생");
-
-					}
-
+							cot.joinId();
+					
 				}
 
 			}
