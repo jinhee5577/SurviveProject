@@ -76,6 +76,7 @@ public class view_main {
 							cot.showTier();
 						}else if(controller == 5) {//---------------------------------------------------회원탈퇴
 							cot.deleteId();
+							break;
 						}
 
 						else if (controller == 6) {//
