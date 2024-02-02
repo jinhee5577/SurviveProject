@@ -162,7 +162,7 @@ public class Controller {
 
 	}
 	
-	//
+	////
 	
 	// 위반복 점수 합산 축약 코드
 	public void sortSumFunc(int plus) {
