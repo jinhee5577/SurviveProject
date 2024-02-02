@@ -114,6 +114,40 @@ public class QuestionDAO {
 
 	}
 
+	// 회원 탈퇴 메서드
+	
+	public int delete(String user_id) {
+		getConn();
+
+		try {
+
+			String sql = "delete from user_info_tb where id =?";
+			psmt = conn.prepareStatement(sql);
+			
+			psmt.setString(1, user_id);
+			
+
+			int row = psmt.executeUpdate();
+			return row;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		} finally {
+			allClose();
+		}
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// 로그인 정보 메서드
 	// db에서 유저 정보 가져오는 기능 메서드
 	public User_infoDTO getUserInfo(String input_id) {
