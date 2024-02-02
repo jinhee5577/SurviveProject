@@ -67,8 +67,10 @@ public class view_main {
 						if (controller == 3) { // 게임 캐릭터 선택 or 게임시작
 							// 문제 풀고 정답까지 비교 하는 메소드 호출 해줌.
 							cot.solution();
-							
-						} else if (controller == 4) {// 랭킹 조회       
+
+
+						} else if (controller == 4) {// 랭킹 조회              
+
 							cot.showTier();
 						}else if(controller == 5) {//---------------------------------------------------회원탈퇴
 							cot.deleteId();
