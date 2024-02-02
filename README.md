@@ -9,6 +9,7 @@
 - **오종원**:  (https://github.com/jong-won-oh)
 
 ### 개발 기간 :  2024.01.30 ~ 2024.02.01
+### 개발 스택 : JAVA, Oracle, Github
 <br>
 
 ----
