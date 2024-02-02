@@ -255,8 +255,10 @@ public class Controller {
 	public void deleteId() {
 	System.out.print("삭제할 ID 입력: ");
     String inputName = sc.next();
+    System.out.print("비밀번호 확인: ");
+    String inputPw = sc.next();
     QuestionDAO pdao = new QuestionDAO();
-    int row =pdao.delete(inputName);
+    int row =pdao.delete(inputName,inputPw);
     
     
     if(row>0) {

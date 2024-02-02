@@ -36,7 +36,7 @@ public class view_main {
              		+ "|　넌센스 퀴즈에 오신걸 환영합니다 　　                  |\r\n"
              		+ "|　        　　　　　　　　　　　　　　　　　　　　　　　　     |\r\n"
              		+ "|　　＿＿＿＿＿＿＿＿　　　　＿＿＿＿＿＿＿＿　　　　＿＿＿＿＿＿＿　　|\r\n"
-             		+ "| 　|[1] 로그인　|　　　｜[2]회원가입｜ 　  |[5]게임종료|　|\r\n"
+             		+ "| 　|[1] 로그인　|　　　｜[2]회원가입｜ 　  |[6]게임종료|　|\r\n"
              		+ "|　　￣￣￣￣￣￣￣￣　　　　￣￣￣￣￣￣￣￣　　　　￣￣￣￣￣￣￣　　|\r\n"
              		+ "￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣\r\n"
              		+ "");
@@ -45,7 +45,7 @@ public class view_main {
 			
 
 				int choice = sc.nextInt();
-				if (choice == 5) {
+				if (choice == 6) {
 					System.out.println("게임을 종료합니다.");
 					break;
 				} else if (choice == 1) { // 로그인
@@ -75,7 +75,7 @@ public class view_main {
 						}else if(controller == 5) {//---------------------------------------------------회원탈퇴
 							cot.deleteId();
 						}
-						else if (controller == 6) {// 랭킹 조회
+						else if (controller == 6) {//
 							System.out.println("게임을 완전히 종료 합니다.");
 							return;
 						}
