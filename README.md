@@ -4,7 +4,7 @@
 ### <인혜팀>
 ### 👨🏻‍💻 팀원  
 - **나인혜 (팀장)** :  (https://github.com/inhvee)
-- **오진희**:  (https://github.com/krafjin56)
+- **오진희(본인)**:  (https://github.com/krafjin56)
 - **임정민**:  (https://github.com/duggie27)
 - **오종원**:  (https://github.com/jong-won-oh)
 
